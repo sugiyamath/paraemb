@@ -13,6 +13,8 @@ Currently, this project is just an experiment.
 
 ## execution flow
 
+prepare.py -> run.sh
+
 ### prepare.py
 
 prepare.py is a data-preparation script. To use this script, you need to prepare an paraphrase corpus, like PAWS.
@@ -39,7 +41,7 @@ The outputs are this:
 - dvecs_features.npy: hard-positive vectors that were transformed from sentence2.
 - dvecs_n_features.npy: hard-negative vectors that were transformed from sentence2.
 
-## training
+### training
 run.sh will execute four types of training scripts:
 
 - model_ns.py: a model using random negative sampling.
