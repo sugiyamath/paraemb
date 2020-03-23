@@ -56,4 +56,8 @@ This module assumes using a sentence piece model and a trained sentence embeddin
 
 ## logs
 
-logs have training logs as TensorBoard format.
+logs directory have training logs as TensorBoard format.
+
+## TODO
+
+- add dual encoder experiment.
