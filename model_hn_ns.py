@@ -45,7 +45,7 @@ def dummy_metrics(x, y):
     return 0
 
 
-def triplet_loss(model, X_n, Y_n, margin):
+def triplet_loss(model, X_n, Y_n, margin, a=0.2):
     def pred(model, x):
         x_cp = x
         for i in range(len(model.layers)):
@@ -53,16 +53,20 @@ def triplet_loss(model, X_n, Y_n, margin):
         return x_cp
 
     def loss(y_true, y_pred):
+        ns = shuffle(Y_rand)
+        ns = ns[:bs]
         ns_x, ns_y = shuffle(X_n, Y_n)
         ns_x = ns_x[:bs]
         ns_y = ns_y[:bs]
         va = pred(model, y_true)
+        vn = pred(model, np.array(ns))
         vp = y_pred
         vn_x = pred(model, np.array(ns_x))
         vn_y = pred(model, np.array(ns_y))
-        dx = tf.norm(va - vp)
-        dy = tf.norm(vn_x - vn_y)
-        T = dx - dy
+        dx = tf.minimum(tf.norm(va - vp), 1.0)
+        dy1 = tf.minimum(tf.norm(vn_x - vn_y), 1.0)
+        dy2 = tf.minimum(tf.norm(vn), 1.0)
+        T = dx - a*dy1 - (1-a)*dy2
         T = tf.add(T, tf.constant(margin))
         T = tf.maximum(T, 0.0)
         valid_triplets = tf.cast(tf.math.greater(T, 1e-16), dtype=tf.float32)
