@@ -51,3 +51,7 @@ run.sh will execute four types of training scripts:
 
 paraemb.py is a simple module to encode sentence as sentence vector.
 This module assumes using a sentence piece model and a trained sentence embedding.
+
+## logs
+
+logs have training logs as TensorBoard format.
