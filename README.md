@@ -45,10 +45,9 @@ The outputs are this:
 run.sh will execute four types of training scripts:
 
 - model_ns.py: a model using random negative sampling.
-- model_ns_clip.py: a model using random negative sampling with clipping euclidian distance.
 - model_hn.py: a model using hard-negative.
 
-model_ns and model_ns_clip are bulls*it, and model_hn seems better.
+model_ns is bulls*it, and model_hn seems better.
 
 ## paraemb.py
 
