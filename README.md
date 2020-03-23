@@ -47,6 +47,8 @@ run.sh will execute four types of training scripts:
 - model_hn.py: a model using hard-negative.
 - model_hn_ns.py: a model using hard-negative and random negative sampling.
 
+model_ns and model_ns_clip are bulls*it, and model_hn and model_hn_ns seem better.
+
 ## paraemb.py
 
 paraemb.py is a simple module to encode sentence as sentence vector.
