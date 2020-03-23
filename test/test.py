@@ -4,7 +4,7 @@ from tqdm import tqdm
 from sklearn.metrics import classification_report
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
-
+from sklearn import tree
 
 def cossim(v1, v2):
     return np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
@@ -13,8 +13,10 @@ def cossim(v1, v2):
 def _calc_features(df, enc1, enc2):
     oL = []
     oP = []
-    v1s_L = enc1('\n'.join([str(x).replace("\n", "") for x in df["sentence1"]]))
-    v2s_L = enc1('\n'.join([str(x).replace("\n", "") for x in df["sentence2"]]))
+    v1s_L = enc1('\n'.join([str(x).replace("\n", "")
+                            for x in df["sentence1"]]))
+    v2s_L = enc1('\n'.join([str(x).replace("\n", "")
+                            for x in df["sentence2"]]))
     v1s_P = enc2(df["sentence1"])
     v2s_P = enc2(df["sentence2"])
     assert v1s_L.shape[0] == df.shape[0]
@@ -39,21 +41,25 @@ def main(infile, outfile):
 
 
 def test(trainfile, testfile):
-    cnames = [["laser"], ["paraemb"], ["laser", "paraemb"]]
+    fnames = ["L.dot", "P.dot", "LP4.dot", "LP6.dot"]
+    cnames = [["laser"], ["paraemb"], ["laser", "paraemb"],
+              ["laser", "paraemb"]]
+    mlns = [2, 2, 4, 6]
 
-    for cname in cnames:
+    for fname, cname, mln in zip(fnames, cnames, mlns):
         df = pd.read_csv(trainfile, sep="\t")
         X_train = df[cname]
         y_train = df["label"]
         df = pd.read_csv(testfile, sep="\t")
         X_test = df[cname]
         y_test = df["label"]
-        clf = DecisionTreeClassifier(max_leaf_nodes=8)
+        clf = DecisionTreeClassifier(max_leaf_nodes=mln)
         clf.fit(X_train, y_train)
         y_pred = clf.predict(X_test)
         print("[{}]".format(cname))
         print(classification_report(y_test, y_pred))
         print()
+        tree.export_graphviz(clf, out_file=fname)
 
 
 if __name__ == "__main__":
