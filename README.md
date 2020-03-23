@@ -42,7 +42,7 @@ The outputs are this:
 - dvecs_n_features.npy: hard-negative vectors that were transformed from sentence2.
 
 ### training
-run.sh will execute four types of training scripts:
+run.sh will execute two types of training scripts:
 
 - model_ns.py: a model using random negative sampling.
 - model_hn.py: a model using hard-negative.
