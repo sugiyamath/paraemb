@@ -1,3 +1,4 @@
+import sys
 import numpy as np
 import tensorflow as tf
 import sentencepiece as spm
@@ -5,7 +6,7 @@ import sentencepiece as spm
 sp = spm.SentencePieceProcessor()
 sp.load("./jasp/sp.model")
 
-model = tf.keras.models.load_model("./model.h5", compile=False)
+model = tf.keras.models.load_model(sys.argv[1], compile=False)
 
 
 def encode(texts):

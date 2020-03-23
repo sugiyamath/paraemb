@@ -10,6 +10,10 @@ from tensorflow.keras.layers import Embedding, SpatialDropout1D, SeparableConv1D
 
 bs = 5
 lr = 1e-6
+margin = 0.5
+epoch = 1
+logs = "./logs_hn/"
+
 
 X_t = np.load("./prepared_data/qvecs_train_features.npy")
 Y_t = np.load("./prepared_data/dvecs_train_features.npy")
@@ -96,7 +100,8 @@ def build_model(data,
                 max_len=300,
                 dim1=50,
                 dim2=200,
-                drate=0.25):
+                drate=0.25,
+                learning_rate=lr):
     model = Sequential()
     model.add(Input(shape=(300, )))
     model.add(
@@ -112,23 +117,12 @@ def build_model(data,
     model.add(Dense(dim2))
     lf = triplet_loss(model, X_n, Y_n, margin)
     model.compile(loss=lf,
-                  optimizer=tf.keras.optimizers.Adam(lr=lr),
+                  optimizer=tf.keras.optimizers.Adam(lr=learning_rate),
                   metrics=[dummy_metrics])
     return model, lf
 
 
-def train(model, X_train, X_dev, y_train, y_dev):
-    history = model.fit(X_train,
-                        y_train,
-                        batch_size=bs,
-                        epochs=1,
-                        validation_data=generate_vdata(),
-                        validation_steps=X_dev.shape[0] // bs)
-    #pprint.pprint(history.history)
-    return history
-
-
 if __name__ == "__main__":
-    model, lf = build_model(X_train, margin=5.0)
-    trainB(model, X_train, Y_train, lf, epochs=1)
-    model.save("model.h5")
+    model, lf = build_model(X_train, margin=margin)
+    trainB(model, X_train, Y_train, lf, epochs=epoch, outdir=logs)
+    model.save("model_hn.h5")
