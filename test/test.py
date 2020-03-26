@@ -6,6 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn import tree
 
+
 def cossim(v1, v2):
     return np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
 
@@ -63,6 +64,6 @@ def test(trainfile, testfile):
 
 
 if __name__ == "__main__":
-    #main("./test.tsv", "./test_result.tsv")
-    #main("../data/pawsx/train.tsv", "./train_result.tsv")
+    main("../../data/pawsx/test.tsv", "./test_result.tsv")
+    main("../../data/pawsx/train.tsv", "./train_result.tsv")
     test("./train_result.tsv", "./test_result.tsv")
