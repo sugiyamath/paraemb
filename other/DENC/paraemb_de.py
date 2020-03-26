@@ -6,7 +6,7 @@ import sentencepiece as spm
 sp = spm.SentencePieceProcessor()
 sp.load("./jasp/sp.model")
 
-model = tf.keras.models.load_model("./model_de2.h5")
+model = tf.keras.models.load_model("./model_de.h5")
 model_fx = tf.keras.models.Model(inputs=model.get_layer("in1").input,
                                  outputs=model.get_layer("sentemb").output)
 

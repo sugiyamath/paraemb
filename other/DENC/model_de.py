@@ -12,7 +12,7 @@ from tensorflow.keras.layers import Embedding, SpatialDropout1D, SeparableConv1D
 bs = 10
 lr = 1e-3
 margin = 0.5
-epoch = 1
+epoch = 2
 logs = "./logs_de/"
 
 
