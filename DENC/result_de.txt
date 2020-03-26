@@ -1,0 +1,20 @@
+[['laser']]
+              precision    recall  f1-score   support
+
+           0       0.57      0.97      0.72      1117
+           1       0.64      0.07      0.12       883
+
+    accuracy                           0.57      2000
+   macro avg       0.61      0.52      0.42      2000
+weighted avg       0.60      0.57      0.46      2000
+
+
+[['dualenc']]
+              precision    recall  f1-score   support
+
+           0       0.56      0.99      0.72      1117
+           1       0.75      0.02      0.05       883
+
+    accuracy                           0.57      2000
+   macro avg       0.66      0.51      0.38      2000
+weighted avg       0.65      0.57      0.42      2000
