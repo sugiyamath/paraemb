@@ -57,3 +57,7 @@ This module assumes using a sentence piece model and a trained sentence embeddin
 ## logs
 
 logs directory have training logs as TensorBoard format.
+
+## TODO
+
+- test sentence-bert : https://github.com/UKPLab/sentence-transformers
