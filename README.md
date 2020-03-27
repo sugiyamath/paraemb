@@ -1,12 +1,16 @@
 # paraemb
-An experiment of deep metric learning, creating sentence embedding from paraphrase corpus
+An experiment of creating sentence embedding from paraphrase corpus
 
 Currently, this project is just an experiment.
+
+## what's this?
+
+This project is an experiment of sentence embedding. The motivation is solving paraphrase identification task only by sentence vector's similarity.
 
 ## requirements
 
 - sentencepiece
-- tensorflow-gpu > 2.0.0
+- tensorflow-gpu >= 2.0.0
 - numpy
 - pandas
 
