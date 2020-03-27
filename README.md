@@ -17,11 +17,11 @@ This project is an experiment of sentence embedding. The motivation is solving p
 
 ## execution flow
 
-prepare.py -> run.sh
+prepare.py -> models/<modelname> -> run some scripts
 
 ### prepare.py
 
-prepare.py is a data-preparation script. To use this script, you need to prepare an paraphrase corpus, like PAWS.
+prepare.py is a data preparation script. To use this script, you need to prepare an paraphrase corpus, like PAWS-X.
 
 The data format is this:
 
@@ -30,7 +30,7 @@ The data format is this:
 |colname|sentence1|sentence2|label|
 |description|the input sentence of the model|pair sentence of input|0: hard-negative, 1:hard-positive|
 
-execute function has these params:
+execute function in prepare.py has these params:
 
 ```
 execute(datapath, output_prefix)
@@ -45,22 +45,6 @@ The outputs are this:
 - dvecs_features.npy: hard-positive vectors that were transformed from sentence2.
 - dvecs_n_features.npy: hard-negative vectors that were transformed from sentence2.
 
-### training
-run.sh will execute two types of training scripts:
-
-- model_ns.py: a model using random negative sampling.
-- model_hn.py: a model using hard-negative.
-
-model_ns is bulls*it, and model_hn seems better.
-
-## paraemb.py
-
-paraemb.py is a simple module to encode sentence as sentence vector.
-This module assumes using a sentence piece model and a trained sentence embedding.
-
-## logs
-
-logs directory have training logs as TensorBoard format.
 
 ## TODO
 
