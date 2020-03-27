@@ -17,7 +17,7 @@ This project is an experiment of sentence embedding. The motivation is solving p
 
 ## execution flow
 
-prepare.py -> models/<modelname> -> run some scripts
+prepare.py -> models/MODELNAME -> run some scripts
 
 ### prepare.py
 
